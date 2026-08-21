@@ -1,10 +1,546 @@
-/* ==========================================
-   FILMKVÄLL
-   CSS
-   ========================================== */
+:root {
+  --background: #090a12;
+  --surface: #11131f;
+  --surface-light: #181b2a;
+  --border: rgba(255, 255, 255, 0.08);
+
+  --text: #f8f8fb;
+  --muted: #9699aa;
+
+  --primary: #8b5cf6;
+  --primary-dark: #7044dc;
+  --accent: #ec4899;
+
+  --success: #34d399;
+  --danger: #f87171;
+
+  --radius: 18px;
+  --max-width: 900px;
+}
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(
+      circle at 50% -10%,
+      rgba(139, 92, 246, 0.16),
+      transparent 35%
+    ),
+    var(--background);
+  color: var(--text);
+  font-family: "Inter", sans-serif;
+  line-height: 1.5;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.app {
+  width: min(100% - 32px, var(--max-width));
+  margin: 0 auto;
+  padding: 32px 0 40px;
+}
+
+/* Header */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 80px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.logo-icon {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  font-size: 17px;
+}
+
+.tagline {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* Hero */
+
+.hero {
+  margin-bottom: 48px;
+}
+
+.eyebrow {
+  margin-bottom: 8px;
+  color: #a78bfa;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+}
+
+.hero h1 {
+  max-width: 650px;
+  font-size: clamp(42px, 7vw, 70px);
+  line-height: 1.02;
+  letter-spacing: -3px;
+  font-weight: 800;
+}
+
+.hero-text {
+  max-width: 540px;
+  margin-top: 20px;
+  color: var(--muted);
+  font-size: 16px;
+}
+
+/* Add movie */
+
+.add-movie {
+  padding: 24px;
+  margin-bottom: 56px;
+  background: rgba(17, 19, 31, 0.8);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.add-movie label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.input-row {
+  display: flex;
+  gap: 10px;
+}
+
+.input-row input {
+  flex: 1;
+  min-width: 0;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  outline: none;
+  background: var(--surface-light);
+  color: var(--text);
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.input-row input::placeholder {
+  color: #696c7d;
+}
+
+.input-row input:focus {
+  border-color: rgba(139, 92, 246, 0.7);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+
+.btn {
+  border: 0;
+  border-radius: 12px;
+  padding: 0 22px;
+  color: white;
+  font-weight: 600;
+  transition:
+    transform 0.2s,
+    background 0.2s;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: var(--primary);
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+}
+
+.form-message {
+  min-height: 20px;
+  margin-top: 8px;
+  color: var(--danger);
+  font-size: 12px;
+}
+
+/* Movie list */
+
+.movies-section {
+  margin-bottom: 40px;
+}
+
+.section-header,
+.favorite-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 18px;
+}
+
+.section-header h2,
+.favorite-header h2 {
+  font-size: 25px;
+  letter-spacing: -0.8px;
+}
+
+.movie-count {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.movie-list {
+  display: grid;
+  gap: 10px;
+}
+
+.movie-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 15px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  transition:
+    border-color 0.2s,
+    transform 0.2s,
+    background 0.2s;
+}
+
+.movie-card:hover {
+  background: var(--surface-light);
+  border-color: rgba(139, 92, 246, 0.3);
+  transform: translateY(-1px);
+}
+
+.movie-number {
+  display: grid;
+  place-items: center;
+  flex: 0 0 38px;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: #1c1f2d;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.movie-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.movie-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.movie-votes {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.movie-actions {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.vote-button,
+.delete-button {
+  border: 0;
+  border-radius: 9px;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    transform 0.2s;
+}
+
+.vote-button {
+  min-width: 72px;
+  padding: 9px 12px;
+  background: rgba(139, 92, 246, 0.12);
+  color: #bda9ff;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.vote-button:hover {
+  background: rgba(139, 92, 246, 0.25);
+  color: white;
+}
+
+.vote-button:active {
+  transform: scale(0.95);
+}
+
+.delete-button {
+  width: 34px;
+  height: 34px;
+  background: transparent;
+  color: #666979;
+  font-size: 15px;
+}
+
+.delete-button:hover {
+  background: rgba(248, 113, 113, 0.1);
+  color: var(--danger);
+}
+
+.empty-state {
+  padding: 50px 20px;
+  text-align: center;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+}
+
+.empty-icon {
+  margin-bottom: 10px;
+  font-size: 30px;
+}
+
+.empty-state h3 {
+  font-size: 16px;
+}
+
+.empty-state p {
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* Random */
+
+.actions {
+  margin: 48px 0;
+}
+
+.random-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 17px;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 14px;
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.16),
+    rgba(236, 72, 153, 0.08)
+  );
+  color: white;
+  font-weight: 700;
+  transition:
+    transform 0.2s,
+    border-color 0.2s;
+}
+
+.random-button:hover {
+  border-color: rgba(139, 92, 246, 0.6);
+  transform: translateY(-2px);
+}
+
+.random-icon {
+  font-size: 18px;
+}
+
+.random-result {
+  margin-top: 12px;
+  padding: 24px;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: var(--radius);
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.15),
+    rgba(236, 72, 153, 0.08)
+  );
+  text-align: center;
+}
+
+.result-label {
+  display: block;
+  margin-bottom: 7px;
+  color: #a78bfa;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.random-result strong {
+  font-size: 22px;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Favorite */
+
+.favorite {
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.trophy {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: rgba(250, 204, 21, 0.1);
+  font-size: 20px;
+}
+
+.favorite-content {
+  display: flex;
+  align-items: center;
+  min-height: 70px;
+  padding: 16px;
+  border-radius: 12px;
+  background: var(--surface-light);
+}
+
+.favorite-movie {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 20px;
+}
+
+.favorite-title {
+  font-weight: 700;
+}
+
+.favorite-votes {
+  color: #facc15;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.favorite-content > p {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* Footer */
+
+footer {
+  padding-top: 45px;
+  color: #555867;
+  text-align: center;
+  font-size: 11px;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+  .app {
+    width: min(100% - 22px, var(--max-width));
+    padding-top: 22px;
+  }
+
+  .header {
+    margin-bottom: 55px;
+  }
+
+  .tagline {
+    display: none;
+  }
+
+  .hero {
+    margin-bottom: 35px;
+  }
+
+  .hero h1 {
+    font-size: 45px;
+    letter-spacing: -2px;
+  }
+
+  .hero-text {
+    font-size: 14px;
+  }
+
+  .add-movie {
+    padding: 18px;
+    margin-bottom: 42px;
+  }
+
+  .input-row {
+    flex-direction: column;
+  }
+
+  .input-row input {
+    width: 100%;
+  }
+
+  .btn-primary {
+    min-height: 46px;
+  }
+
+  .movie-card {
+    padding: 12px;
+  }
+
+  .movie-number {
+    flex-basis: 32px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .movie-actions {
+    gap: 4px;
+  }
+
+  .vote-button {
+    min-width: 62px;
+    padding: 8px 8px;
+  }
+
+  .delete-button {
+    width: 30px;
+  }
+
+  .favorite {
+    padding: 18px;
+  }
 }
