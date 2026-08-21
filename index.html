@@ -4,23 +4,80 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Filmkväll 🎬</title>
+
+  <title>Filmkväll</title>
+  <meta name="description" content="Filmkväll – välj, rösta och slumpa fram kvällens film.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <h1> Filmkväll</h1>
-  <input id="movieInput" placeholder="Skriv en film">
-  <button id="addMovieButton">Lägg till</button>
-  <ul id="movieList"></ul>
-  <button id="randomButton">Slumpa film</button>
+  <main class="app">
 
-  <div id="result">
-  </div>
+    <header class="header">
+      <div class="logo">
+        <span class="logo-icon">🎬</span>
+        <span>FILMKVÄLL</span>
+      </div>
+
+      <p class="tagline">Välj. Rösta. Titta.</p>
+    </header>
+
+    <section class="hero">
+      <div>
+        <p class="eyebrow">DAGS FÖR FILM</p>
+        <h1>Vilken film ska<br>vi se ikväll?</h1>
+        <p class="hero-text">
+          Lägg till era favoriter och låt gruppen rösta fram kvällens film.
+        </p>
+      </div>
+    </section>
+
+    <section class="add-movie">
+      <form id="movieForm">
+        <label for="movieInput">Lägg till en film</label>
+
+        <div class="input-row">
+          <input type="text" id="movieInput" placeholder="Skriv filmtitel..." maxlength="100" autocomplete="off">
+          <button type="submit" class="btn btn-primary">Lägg till</button>
+        </div>
+
+        <p id="formMessage" class="form-message"></p>
+      </form>
+    </section>
+
+    <section class="movies-section">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">FILMER</p>
+          <h2>Era val</h2>
+        </div>
+        <span id="movieCount" class="movie-count">0 filmer</span>
+      </div>
+
+      <div id="movieList" class="movie-list">
+        <!-- Filmer renderas här av JavaScript -->
+      </div>
+
+      <div id="emptyState" class="empty-state">
+        <div class="empty-icon">🍿</div>
+        <h3>Inga filmer ännu</h3>
+        <p>Lägg till den första filmen så kör vi igång.</p>
+      </div>
+    </section>
+
+
+    <footer>
+      <p>Filmkväll &bull; Välj en film och njut av kvällen.</p>
+    </footer>
+  </main>
 
   <script src="script.js"></script>
-
 </body>
 
 </html>
